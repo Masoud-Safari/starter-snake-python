@@ -38,15 +38,15 @@ class game_status:
             new_x = data['you']['body'][0]['x'] + 1
             new_y = data['you']['body'][0]['y']
             
-        if new_x == self.width - 1 or new_x == 0:
+        if new_x == self.width - 1 or new_x == 0 or new_y == self.height - 1 or new_y == 0:
             self.rank = 0
         else:
             self.rank = 1
             
-        if new_y == self.height - 1 or new_y == 0:
+        '''if new_y == self.height - 1 or new_y == 0:
             self.rank = 0
         else:
-            self.rank = 1
+            self.rank = 1'''
                 
         self.t = {'x': new_x, 'y': new_y}
         if self.t in data['you']['body']:
@@ -157,6 +157,10 @@ def move():
         nm = random.choice(final0)
     else:
         nm = random.choice(['u', 'd', 'l', 'r'])
+        
+    print(data['turn'])
+    print(final0)
+    print(final1)
    
     if nm == 'u':
         direction = 'up'
