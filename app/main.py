@@ -37,6 +37,16 @@ class game_status:
         elif next_move == 'r':
             new_x = data['you']['body'][0]['x'] + 1
             new_y = data['you']['body'][0]['y']
+            
+        if new_x == self.width - 1 or new_x == 0:
+            self.rank = 0
+        else:
+            self.rank = 1
+            
+        if new_y == self.height - 1 or new_y == 0:
+            self.rank = 0
+        else:
+            self.rank = 1
                 
         self.t = {'x': new_x, 'y': new_y}
         if self.t in data['you']['body']:
@@ -51,6 +61,8 @@ class game_status:
         for i in range(len(self.rival)):
             if self.t in i['body']:
                 self.rank = -1
+                
+        
         
         
         
@@ -130,15 +142,22 @@ def move():
         all_moves.append(game_status(data, i))
         
     nm = 'u'
-    final = []
+    final0 = []
+    final1 = []
     
     for i in all_moves:
-        if i.rank != -1:
-            final.append(i.result)
-            
-    if len(final) != 0:
-        nm = random.choice(final)
-            
+        if i.rank == 0:
+            final0.append(i.result)
+        if i.rank == 1:
+            final1.append(i.result)
+    
+    if len(final1) != 0:
+        nm = random.choice(final1)
+    elif len(final0) != 0:
+        nm = random.choice(final0)
+    else:
+        nm = random.choice(['u', 'd', 'l', 'r'])
+   
     if nm == 'u':
         direction = 'up'
     elif nm == 'd':
