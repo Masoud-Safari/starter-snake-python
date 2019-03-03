@@ -59,7 +59,7 @@ class game_status:
             self.rank = -1
             
         for i in range(len(self.rival)):
-            if self.t in i['body']:
+            if self.t in self.rival[i]['body']:
                 self.rank = -1
                 
         
