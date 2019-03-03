@@ -157,10 +157,7 @@ def move():
         nm = random.choice(final0)
     else:
         nm = random.choice(['u', 'd', 'l', 'r'])
-        
-    print(data['turn'])
-    print(final0)
-    print(final1)
+    
    
     if nm == 'u':
         direction = 'up'
